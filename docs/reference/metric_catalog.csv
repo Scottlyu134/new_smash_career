@@ -1,0 +1,7 @@
+metric,definition,denominator,provenance
+positive_pair_rate,positive pairs / all sampled pairs in scope,sampled pairs in scope,synthetic_rule_derived
+viable_pair_rate,positive or partial pairs / all sampled pairs in scope,sampled pairs in scope,synthetic_rule_derived
+avg_required_skill_coverage,mean policy-v2 required-skill coverage,sampled pairs in scope,synthetic_rule_derived
+jd_positive_coverage_rate,JDs with >=1 positive sampled candidate / all pilot JDs,all pilot JDs,synthetic_rule_derived
+candidate_positive_coverage_rate,candidates with >=1 positive sampled JD / all pilot candidates,all pilot candidates,synthetic_rule_derived
+skill_missing_pair_rate,pairs missing required skill / pairs for JDs requiring skill,relevant sampled pairs per skill,synthetic_rule_derived

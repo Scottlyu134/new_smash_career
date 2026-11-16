@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://smash.local/schemas/candidate_profile.schema.json",
+  "type": "object",
+  "required": ["schema_version", "candidate_id", "source_job_id", "archetype", "job_family", "seniority", "years_experience", "skills", "education", "employment", "provenance"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "candidate_id": {"type": "string"},
+    "source_job_id": {"type": "string"},
+    "archetype": {"enum": ["strong", "adjacent", "junior", "gap", "mismatch"]},
+    "job_family": {"type": "string"},
+    "seniority": {"enum": ["intern", "entry", "mid", "senior", "lead", "executive", "unknown"]},
+    "years_experience": {"type": "integer", "minimum": 0},
+    "skills": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "education": {"type": "string"},
+    "employment": {"type": "array", "items": {"type": "object"}, "minItems": 1},
+    "provenance": {"type": "object"}
+  }
+}
+

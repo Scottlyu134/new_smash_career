@@ -1,0 +1,31 @@
+{
+  "input_csv": "data/private/input/job_postings.csv",
+  "random_seed": 20261030,
+  "targets": {"jds": 50, "candidates": 125, "pairs": 1000},
+  "family_allocation": {
+    "data_analyst": 8,
+    "data_scientist": 8,
+    "data_engineer": 8,
+    "machine_learning": 8,
+    "ai_llm": 9,
+    "software_engineer": 9
+  },
+  "split_allocation": {
+    "train": {"jds": 35, "candidates": 85, "pairs": 700},
+    "validation": {"jds": 9, "candidates": 20, "pairs": 180},
+    "test": {"jds": 6, "candidates": 20, "pairs": 120}
+  },
+  "label_mix": {"positive": 0.17, "partial": 0.25, "hard_negative": 0.58},
+  "allocation_note": "The readiness table's 6 JDs x 15 candidates cannot contain 120 unique pairs (capacity 90). Candidate splits are corrected to 85/20/20 while retaining 35/9/6 JDs and 700/180/120 pairs.",
+  "max_jds_per_company": 2,
+  "unknown_neutral_positive_cap": 0.30,
+  "families": {
+    "data_analyst": ["data analyst", "analytics analyst", "business intelligence analyst", "bi analyst"],
+    "data_scientist": ["data scientist", "data science"],
+    "data_engineer": ["data engineer", "analytics engineer"],
+    "machine_learning": ["machine learning", "ml engineer"],
+    "ai_llm": ["artificial intelligence", " ai ", "llm", "generative ai", "nlp engineer"],
+    "software_engineer": ["software engineer", "software developer", "backend engineer", "frontend engineer", "full stack"]
+  },
+  "extraction": {"provider": "mock", "model": "mock-rules-v1"}
+}

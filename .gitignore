@@ -1,0 +1,20 @@
+.env
+.env.*
+!.env.example
+.DS_Store
+
+# Source-licensed and row-level data must stay local.
+data/private/
+artifacts/
+*.csv
+!docs/reference/*.csv
+*.jsonl
+*.sqlite
+*.sqlite3
+*.db
+*.pbix
+
+__pycache__/
+*.py[cod]
+.pytest_cache/
+

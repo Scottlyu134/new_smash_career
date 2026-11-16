@@ -1,0 +1,30 @@
+{
+  "input_csv": "data/private/input/job_postings.csv",
+  "random_seed": 20261030,
+  "per_family": 5,
+  "families": {
+    "data_analyst": ["data analyst", "analytics analyst", "business intelligence analyst", "bi analyst"],
+    "data_scientist": ["data scientist", "data science"],
+    "data_engineer": ["data engineer", "analytics engineer"],
+    "machine_learning": ["machine learning", "ml engineer"],
+    "ai_llm": ["artificial intelligence", " ai ", "llm", "generative ai", "nlp engineer"],
+    "software_engineer": ["software engineer", "software developer", "backend engineer", "frontend engineer", "full stack"]
+  },
+  "extraction": {
+    "provider": "mock",
+    "model": "mock-rules-v1",
+    "base_url": "https://api.openai.com/v1",
+    "api_key_env": "OPENAI_API_KEY",
+    "max_retries": 3,
+    "timeout_seconds": 60,
+    "max_calls": 35,
+    "max_estimated_usd": 0.0,
+    "input_usd_per_million": 0.0,
+    "output_usd_per_million": 0.0
+  },
+  "generation": {
+    "candidates_per_jd": 5,
+    "pairs_per_jd": 15
+  }
+}
+

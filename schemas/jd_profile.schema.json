@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://smash.local/schemas/jd_profile.schema.json",
+  "title": "Traceable JD structured profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "job_id", "job_family", "title", "required_skills", "preferred_skills", "yoe", "seniority", "education", "evidence_spans", "unknown", "provenance"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "job_id": {"type": "string", "minLength": 1},
+    "job_family": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "required_skills": {"type": "array", "items": {"$ref": "#/$defs/skill"}, "uniqueItems": true},
+    "preferred_skills": {"type": "array", "items": {"$ref": "#/$defs/skill"}, "uniqueItems": true},
+    "yoe": {
+      "type": "object", "additionalProperties": false,
+      "required": ["minimum", "maximum", "status", "evidence_ids"],
+      "properties": {
+        "minimum": {"type": ["integer", "null"], "minimum": 0},
+        "maximum": {"type": ["integer", "null"], "minimum": 0},
+        "status": {"enum": ["explicit", "inferred", "unknown"]},
+        "evidence_ids": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "seniority": {"enum": ["intern", "entry", "mid", "senior", "lead", "executive", "unknown"]},
+    "education": {
+      "type": "object", "additionalProperties": false,
+      "required": ["minimum_level", "preferred_levels", "status", "evidence_ids"],
+      "properties": {
+        "minimum_level": {"enum": ["high_school", "associate", "bachelor", "master", "doctorate", "unknown"]},
+        "preferred_levels": {"type": "array", "items": {"enum": ["associate", "bachelor", "master", "doctorate"]}},
+        "status": {"enum": ["explicit", "unknown"]},
+        "evidence_ids": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "evidence_spans": {"type": "array", "items": {"$ref": "#/$defs/evidence"}},
+    "unknown": {"type": "array", "items": {"enum": ["required_skills", "preferred_skills", "yoe", "seniority", "education"]}, "uniqueItems": true},
+    "split": {"enum": ["train", "validation", "test"]},
+    "source_jd_group_id": {"type": "string", "minLength": 1},
+    "provenance": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source_job_id", "source_sha256", "extractor", "model", "created_at"],
+      "properties": {
+        "source_job_id": {"type": "string"}, "source_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "extractor": {"type": "string"}, "model": {"type": "string"}, "created_at": {"type": "string"}
+      }
+    }
+  },
+  "$defs": {
+    "skill": {
+      "type": "object", "additionalProperties": false,
+      "required": ["name", "normalized", "evidence_ids"],
+      "properties": {"name": {"type": "string"}, "normalized": {"type": "string"}, "evidence_ids": {"type": "array", "items": {"type": "string"}, "minItems": 1}}
+    },
+    "evidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "field", "quote", "start_char", "end_char"],
+      "properties": {
+        "id": {"type": "string"}, "field": {"type": "string"}, "quote": {"type": "string", "minLength": 1},
+        "start_char": {"type": "integer", "minimum": 0}, "end_char": {"type": "integer", "minimum": 1}
+      }
+    }
+  }
+}
+

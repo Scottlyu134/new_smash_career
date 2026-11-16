@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://smash.local/schemas/pair.schema.json",
+  "type": "object",
+  "required": ["pair_id", "job_id", "candidate_id", "label", "label_scope", "skill_coverage", "yoe_gap", "seniority_gap", "label_reason", "label_basis", "provenance"],
+  "properties": {
+    "pair_id": {"type": "string", "minLength": 1},
+    "job_id": {"type": "string", "minLength": 1},
+    "candidate_id": {"type": "string", "minLength": 1},
+    "label": {"enum": ["positive", "partial", "hard_negative"]},
+    "label_scope": {"type": "string", "minLength": 1},
+    "skill_coverage": {"type": "number", "minimum": 0},
+    "yoe_gap": {"type": ["integer", "null"]},
+    "seniority_gap": {"type": ["integer", "null"]},
+    "label_reason": {"type": "string", "minLength": 1},
+    "label_basis": {"type": "object", "required": ["policy", "source_rule", "features", "embedding_used"]},
+    "provenance": {"type": "object", "required": ["pair_generator", "jd_profile_id", "candidate_profile_id"]}
+  }
+}
